@@ -14,7 +14,7 @@ export const AppHeader = () => {
 					alt='Fischkapp logo'
 				/>
 			</a>
-			<p className='headerConteiner__cardInfo'>{`Cards:${count}`}</p>
+			<p className='headerConteiner__cardInfo'>{`Cards :${count}`}</p>
 			<button
 				className='headerConteiner__plusBtn'
 				// onClick={() => setCount((count) => count + 1)}
