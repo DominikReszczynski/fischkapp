@@ -19,7 +19,7 @@ export const AppHeader = () => {
 				className='headerConteiner__plusBtn'
 				onClick={() => setCount((count) => count + 1)}
 			>
-				<img src={plusIcon} alt='plus' />
+				<img src={plusIcon} alt='plusIcon' />
 			</button>
 		</header>
 	);
