@@ -1,60 +1,19 @@
-/* card */
-.cardConteinerNext,
-.cardConteinerSave {
+.card {
 	display: flex;
+	justify-content: center;
 	flex-direction: column;
-	margin: 10px;
-	padding: 10px;
-	border: 1px solid;
+	margin: 12px;
+	padding: 0 12px 12px 12px;
+	background-color: rgb(255, 255, 255);
+	border: 1px solid grey;
 	border-radius: 10px;
 }
-.saveHeader {
-	margin-top: 0px;
-}
-/* input */
-.inputText {
-	width: 100%;
-	min-height: '40px';
-	resize: none;
-	border: 1px solid gray;
-}
-/* buttons */
-.cardConteinerNext div,
-.cardConteinerSave div {
+.editConteiner {
 	display: flex;
 	justify-content: right;
-	margin-top: 10px;
 }
-.cardConteinerSave .saveHeader {
-	margin-top: 0px;
-}
-.cardConteinerNext div button,
-.cardConteinerSave div button {
-	padding: 6px 20px;
-	margin-right: 8px;
-	border: 0px;
-	border-radius: 20px;
-}
-.cardConteinerNext div button:first-child,
-.cardConteinerSave div button:first-child {
-	padding: 0 10px;
-}
-.cardConteinerNext div button:last-child,
-.cardConteinerSave div button:last-child {
-	margin-right: 0px;
-}
-.binBtn {
-	padding: -10px 0;
-	border: none;
-}
-.btnCancel {
-	border: none;
-}
-.btnConfirm {
-	color: azure;
-	background-color: black;
-}
-.btnDelete {
-	color: azure;
-	background-color: #d11a2a;
+.text {
+	text-align: center;
+	margin: 0 20px 20px 20px;
+	word-wrap: break-word;
 }
