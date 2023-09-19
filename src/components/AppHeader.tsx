@@ -8,11 +8,7 @@ export const AppHeader = () => {
 	return (
 		<header className={styles.headerConteiner}>
 			<a href='' target='_blank'>
-				<img
-					src={fischkappLogo}
-					className={styles.logo}
-					alt='Fischkapp logo'
-				/>
+				<img src={fischkappLogo} className={styles.logo} alt='Fischkapp logo' />
 			</a>
 			<p className={styles.cardInfo}>{`Cards :${count}`}</p>
 			<button
