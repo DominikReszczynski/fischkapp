@@ -14,7 +14,7 @@ export const AppCard = () => {
 			<div className={style.cardConteinerSave}>
 				<div className={style.saveHeader}>
 					<button className={style.binBtn}>
-						<img src={binIcon} alt='bin' />
+						<img src={binIcon} alt='binIcon' />
 					</button>
 				</div>
 				<textarea className={style.inputText}></textarea>
