@@ -8,19 +8,19 @@
 	top: 0;
 	width: 100%;
 }
-.headerConteiner__logo {
+.logo {
 	width: 31.815px;
 	height: 29px;
 	margin: 0 10px;
 }
-.headerConteiner__cardInfo {
+.cardInfo {
 	color: #1c1c1c;
 	font-size: 18px;
 	font-style: normal;
 	font-weight: 500;
 	line-height: 20px;
 }
-.headerConteiner__plusBtn {
+.plusBtn {
 	display: flex;
 	align-items: center;
 	justify-content: center;
