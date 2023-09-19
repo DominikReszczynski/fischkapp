@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './AppCard.module.css';
 import binIcon from '../images/Kind=Delete.svg';
+//card
 export const AppCard = () => {
 	return (
 		<>
