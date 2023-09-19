@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './AppHeader.module.css';
 import fischkappLogo from '../images/fischkappLogo.svg';
 import plusIcon from '../images/plusIcon.svg';
-
+// header
 export const AppHeader = () => {
 	const [count, setCount] = useState<number>(0);
 	return (
