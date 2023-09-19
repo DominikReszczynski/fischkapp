@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './AppCard.module.css';
 import editIcon from '../images/Kind=Edit.svg';
 
@@ -12,12 +12,30 @@ export const AppCard = () => {
 		'specimen book. It has survived not only five centuries, but also the leap',
 		'into electronic typesetting, remaining essentially unchanged.',
 	];
-	return textArr.map((item, index) => (
-		<div className={styles.card} key={index}>
-			<div className={styles.editConteiner}>
-				<img src={editIcon} alt='edit' />
-			</div>
-			<h4 className={styles.text}>{item}</h4>
+	const [text, setText] = useState(textArr);
+
+	const reverseText = (index: number) => {
+		const newTextArr = [...text];
+		newTextArr[index] = newTextArr[index].split('').reverse().join('');
+		setText(newTextArr);
+	};
+
+	return (
+		<div>
+			{text.map((item, index) => (
+				<button
+					className={styles.cardBtn}
+					key={index}
+					onClick={() => reverseText(index)}
+				>
+					<div className={styles.card}>
+						<div className={styles.editConteiner}>
+							<img src={editIcon} alt='edit' />
+						</div>
+						<h4 className={styles.text}>{item}</h4>
+					</div>
+				</button>
+			))}
 		</div>
-	));
+	);
 };
