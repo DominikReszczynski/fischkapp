@@ -5,17 +5,17 @@ import React, { useState } from 'react';
 import { EditCard } from './edit/editCard';
 import { NormalCard } from './normal/normalCard';
 
-export const AppCard = ({ front, back }) => {
+export const AppCard = ({ front, back, index, cards, setCards }) => {
   const [side, setSide] = useState(true);
   const [isEdit, setEdit] = useState(false);
-
+  console.log('normal card', index);
   return (
     <>
       <div>
         {!isEdit && (
           <NormalCard
-            front={front}
-            back={back}
+            front={front.firstWord}
+            back={back.secondWord}
             side={side}
             isEdit={isEdit}
             changeSide={() => setSide(!side)}
@@ -24,10 +24,11 @@ export const AppCard = ({ front, back }) => {
         )}
         {isEdit && (
           <EditCard
-            front={front}
-            back={back}
-            side={side}
-            isEdit={isEdit}
+            front={front.firstWord}
+            back={back.secondWord}
+            index={index}
+            setCards={setCards}
+            cards={cards}
             closeEdit={() => setEdit(false)}
           />
         )}

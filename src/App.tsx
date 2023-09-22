@@ -13,7 +13,7 @@ interface Flashcard {
 }
 
 function App() {
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState<Flashcard[]>([]);
   const [isAddingCard, setAdding] = useState(false);
   console.log('moje karty:', cards);
   return (
@@ -30,8 +30,18 @@ function App() {
         {!isAddingCard && (
           <>
             {cards.length === 0 && <p>Brak fiszek, dodaj nowe</p>}
-            <AppCard front="hejka" back="Hey" />
-            <AppCard front="Siemka" back="Hey" />
+            {cards.map((item, index) => {
+              return (
+                <AppCard
+                  key={index}
+                  front={item?.front}
+                  index={index}
+                  back={item.back}
+                  cards={cards}
+                  setCards={setCards}
+                />
+              );
+            })}
           </>
         )}
       </div>
