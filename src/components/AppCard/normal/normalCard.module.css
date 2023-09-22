@@ -1,12 +1,16 @@
-.card {
+.cardBtn {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+	width: calc(100% - 24px);
 	margin: 12px;
 	padding: 0 12px 12px 12px;
 	background-color: rgb(255, 255, 255);
 	border: 1px solid grey;
 	border-radius: 10px;
+}
+.card {
+	width: 100%;
 }
 .editConteiner {
 	display: flex;
@@ -16,4 +20,8 @@
 	text-align: center;
 	margin: 0 20px 20px 20px;
 	word-wrap: break-word;
+}
+.editConteiner button {
+	border: none;
+	background-color: rgba(0, 0, 0, 0);
 }
