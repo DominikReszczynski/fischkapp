@@ -1,4 +1,5 @@
 /* card */
+.cardConteinerNext,
 .cardConteinerSave {
   display: flex;
   flex-direction: column;
@@ -6,7 +7,6 @@
   padding: 10px;
   border: 1px solid;
   border-radius: 10px;
-  background-color: white;
 }
 .saveHeader {
   margin-top: 0px;
@@ -14,12 +14,12 @@
 /* input */
 .inputText {
   width: 100%;
-  min-height: "40px";
+  min-height: '40px';
   resize: none;
   border: 1px solid gray;
-  border-radius: 5px;
 }
 /* buttons */
+.cardConteinerNext div,
 .cardConteinerSave div {
   display: flex;
   justify-content: right;
@@ -28,28 +28,33 @@
 .cardConteinerSave .saveHeader {
   margin-top: 0px;
 }
+.cardConteinerNext div button,
 .cardConteinerSave div button {
   padding: 6px 20px;
   margin-right: 8px;
   border: 0px;
   border-radius: 20px;
 }
+.cardConteinerNext div button:first-child,
 .cardConteinerSave div button:first-child {
   padding: 0 10px;
 }
+.cardConteinerNext div button:last-child,
 .cardConteinerSave div button:last-child {
   margin-right: 0px;
 }
 .binBtn {
   padding: -10px 0;
   border: none;
-  background-color: rgba(0, 0, 0, 0);
 }
 .btnCancel {
   border: none;
-  background-color: rgba(0, 0, 0, 0);
 }
 .btnConfirm {
   color: azure;
   background-color: black;
+}
+.btnDelete {
+  color: azure;
+  background-color: #d11a2a;
 }
