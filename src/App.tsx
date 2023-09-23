@@ -29,7 +29,7 @@ function App() {
         )}
         {!isAddingCard && (
           <>
-            {cards.length === 0 && <p>Brak fiszek, dodaj nowe</p>}
+            {cards.length === 0 && <p>Brak fiszek, dodaj nowe!</p>}
             <AppCard front="hejka" back="Hey" />
             <AppCard front="Siemka" back="Hey" />
           </>
