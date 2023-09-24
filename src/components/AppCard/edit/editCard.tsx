@@ -13,7 +13,7 @@ export const EditCard = ({
   const [secondPageVisable, setSecondPageVisable] = useState<boolean>(true);
   const [firstWord, setFirstWord] = useState<string>('');
   const [secondWord, setSecondWord] = useState<string>('');
-  console.log(front);
+
   const changeWordsOnCard = () => {
     const updatedCards = [...cards];
     const updatedWords = { front: { firstWord }, back: { secondWord } };
@@ -45,11 +45,6 @@ export const EditCard = ({
       )}
       {!secondPageVisable && (
         <div className={styles.cardConteinerSave}>
-          {/* <div className={styles.saveHeader}>
-            <button className={styles.binBtn} onClick={() => {closeEdit()}}>
-              <img src={binIcon} alt="binIcon" />
-            </button>
-          </div> */}
           <textarea
             className={styles.inputText}
             placeholder={back}

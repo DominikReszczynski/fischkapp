@@ -17,7 +17,6 @@ export const NormalCard = ({
     let updatedCards = [...cards];
     updatedCards.splice(index, 1);
     setCards(updatedCards);
-    console.log(`card after delete: ${cards}`)
   };
   
   return (
@@ -26,7 +25,6 @@ export const NormalCard = ({
         <div className={styles.editConteiner}>
         <button
             onClick={() => {
-              console.log('delete');
               deleteCard()
             }}
           >
@@ -34,7 +32,6 @@ export const NormalCard = ({
           </button>
           <button
             onClick={() => {
-              console.log('jestem w edit');
               openEdit();
             }}
           >
