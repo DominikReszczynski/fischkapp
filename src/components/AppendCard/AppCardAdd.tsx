@@ -25,7 +25,7 @@ export const AppCardAdd = ({ onAddCard, setCards, cards }) => {
             <button
               className={style.btnConfirm}
               onClick={() => (
-                setSecondPageVisable(false), console.log(firstWord)
+                setSecondPageVisable(false)
               )}
             >
               NEXT
@@ -57,7 +57,6 @@ export const AppCardAdd = ({ onAddCard, setCards, cards }) => {
               onClick={() => {
                 setSecondPageVisable(true);
                 onAddCard();
-                console.log(`first: ${firstWord}, second: ${secondWord}`);
                 addCard();
               }}
             >

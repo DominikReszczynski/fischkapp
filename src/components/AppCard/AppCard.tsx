@@ -8,7 +8,7 @@ import { NormalCard } from './normal/normalCard';
 export const AppCard = ({ front, back, index, cards, setCards }) => {
   const [side, setSide] = useState(true);
   const [isEdit, setEdit] = useState(false);
-  console.log('normal card', index);
+
   return (
     <>
       <div>
@@ -20,6 +20,9 @@ export const AppCard = ({ front, back, index, cards, setCards }) => {
             isEdit={isEdit}
             changeSide={() => setSide(!side)}
             openEdit={() => setEdit(true)}
+            cards={cards}
+            setCards={setCards}
+            index={index}
           />
         )}
         {isEdit && (
