@@ -20,6 +20,7 @@ export const EditCard = ({
     updatedCards[index] = updatedWords;
     setCards(updatedCards);
   };
+  
   return (
     <>
       {secondPageVisable && (
@@ -44,11 +45,11 @@ export const EditCard = ({
       )}
       {!secondPageVisable && (
         <div className={styles.cardConteinerSave}>
-          <div className={styles.saveHeader}>
-            <button className={styles.binBtn}>
+          {/* <div className={styles.saveHeader}>
+            <button className={styles.binBtn} onClick={() => {closeEdit()}}>
               <img src={binIcon} alt="binIcon" />
             </button>
-          </div>
+          </div> */}
           <textarea
             className={styles.inputText}
             placeholder={back}
