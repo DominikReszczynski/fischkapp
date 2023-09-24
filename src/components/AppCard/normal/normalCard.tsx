@@ -43,7 +43,7 @@ export const NormalCard = ({
         </div>
         <button
           className={styles.cardBtn}
-          onClick={() => {(!isEdit ? changeSide() : null), setFlip(true), console.log(`flip: ${flip}`)}}>
+          onClick={() => {(!isEdit ? (changeSide(), setFlip(true)) : null)}}>
         <h4 className={styles.text}>{side ? cards[index]?.front : cards[index]?.back}</h4>
         </button>
       </div>
