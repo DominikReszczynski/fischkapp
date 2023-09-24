@@ -15,7 +15,9 @@
   border: 1px solid grey;
   border-radius: 10px;
 }
-
+.card.flip{
+  animation: rotate 0.5s linear ;
+}
 .editConteiner {
   display: flex;
   justify-content: right;
@@ -30,4 +32,17 @@
 .editConteiner button {
   border: none;
   background-color: rgba(0, 0, 0, 0);
+}
+.card.flip .editConteiner,
+.card.flip .text{
+  opacity: 0;
+}
+@keyframes rotate {
+  from {
+    transform: rotateY(0deg);
+  }
+
+  to {
+    transform: rotateY(180deg);
+  }
 }
