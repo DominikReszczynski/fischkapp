@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import styles from './AppCardEdit.module.css';
 // import styles from "./AppCard.module.css";
 
@@ -8,7 +8,7 @@ import { NormalCard } from './normal/normalCard';
 export const AppCard = ({ front, back, index, cards, setCards }) => {
   const [side, setSide] = useState(true);
   const [isEdit, setEdit] = useState(false);
-
+  
   return (
     <>
       <div>

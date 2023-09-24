@@ -41,7 +41,7 @@ export const NormalCard = ({
         <button
           className={styles.cardBtn}
           onClick={() => (!isEdit ? changeSide() : null)}>
-        <h4 className={styles.text}>{side ? front : back}</h4>
+        <h4 className={styles.text}>{side ? cards[index]?.front : cards[index]?.back}</h4>
         </button>
       </div>
     

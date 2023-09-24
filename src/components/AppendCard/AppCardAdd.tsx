@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './AppCardAdd.module.css';
 import binIcon from '../../images/Kind=Delete.svg';
 //card
@@ -7,8 +7,10 @@ export const AppCardAdd = ({ onAddCard, setCards, cards }) => {
   const [firstWord, setFirstWord] = useState<string>('');
   const [secondWord, setSecondWord] = useState<string>('');
   const addCard = () => {
-    setCards([...cards, { front: { firstWord }, back: { secondWord } }]);
+    setCards([...cards, { front: [firstWord], back: [secondWord] }]);
+    console.log(`dodaje, cards to: ${cards}, a dodałem ${firstWord} oraz ${secondWord}`)
   };
+  
   return (
     <>
       {secondPageVisable && (
