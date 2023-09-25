@@ -11,15 +11,15 @@ export const AppCardAdd = ({ onAddCard, setCards, cards }) => {
     // setCards([...cards, { front: [firstWord], back: [secondWord] }]);
     // console.log(`dodaje, cards to: ${cards}, a dodałem ${firstWord} oraz ${secondWord}`)
     const data = {
-      front: 'What is life?',
-      back: 'I have no idea.'
+      front: {firstWord},
+      back: {secondWord}
     };
     
     const requestOptions = {
       method: 'POST',
       headers: {
-        'Authorization': "secret_token",
-        'Content-Type': "pplication/json"
+        'Authorization': URL_TOKEN,
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
     };
