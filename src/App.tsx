@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import './App.css';
 
 import { AppHeader } from './components/Header/AppHeader';
 import { AppLayout } from './components/AppLayout';
 import { AppCardAdd } from './components/AppendCard/AppCardAdd';
 import { AppCard } from './components/AppCard/AppCard';
 
-import './App.css';
+export const URL_FISCHKAPP = 'https://training.nerdbord.io/api/v1/fischkapp/flashcards'
+export const URL_TOKEN = 'Twój_tajny_token';
 
 interface Flashcard {
   front: string;
@@ -13,11 +15,27 @@ interface Flashcard {
 }
 
 function App() {
-  const [cards, setCards] = useState<Flashcard[]>([
-    {front: 'dom', back: 'home'},
-    {front: 'sklep', back:'shop'}]);
+  const [cards, setCards] = useState<Flashcard[]>([]);
   const [isAddingCard, setAdding] = useState(false);
-  console.log(cards[0])
+  
+
+useEffect(() => {fetch(URL_FISCHKAPP)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Wystąpił błąd podczas wysyłania żądania.');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Odpowiedź serwera:', data);
+    const newCards = [...cards, ...data.map(item => ({ front: item.front, back: item.back }))];
+    setCards(newCards);
+  })
+  .catch(error => {
+    console.error('Błąd:', error);
+  });
+}, [])
+
   return (
     <AppLayout>
       <AppHeader cardsAmount={cards.length} onAddCard={() => setAdding(true)} />
@@ -33,7 +51,6 @@ function App() {
           <>
             {cards.length === 0 && <p>Brak fiszek, dodaj nowe</p>}
             {cards.map((item, index) => {
-              {console.log(cards[index].front)}
               return (
                 <AppCard
                   key={index}
@@ -42,11 +59,9 @@ function App() {
                   back={cards[index].back}
                   cards={cards}
                   setCards={setCards}
-                  
                 />
               );
             })}
-
           </>
         )}
       </div>
