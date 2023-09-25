@@ -3,7 +3,7 @@ import style from './AppCardAdd.module.css';
 import binIcon from '../../images/Kind=Delete.svg';
 import { URL_FISCHKAPP, URL_TOKEN } from '../../App';
 //card
-export const AppCardAdd = ({ onAddCard, setCards, cards }) => {
+export const AppCardAdd = ({ onAddCardTrue, onAddCardFalse, setCards, cards}) => {
   const [secondPageVisable, setSecondPageVisable] = useState<boolean>(true);
   const [firstWord, setFirstWord] = useState<string>('');
   const [secondWord, setSecondWord] = useState<string>('');
@@ -50,7 +50,7 @@ export const AppCardAdd = ({ onAddCard, setCards, cards }) => {
             onChange={(e) => setFirstWord(e.target.value)}
           ></textarea>
           <div>
-            <button className={style.btnCancel} onClick={() => null}>
+            <button className={style.btnCancel} onClick={() => onAddCardFalse()}>
               CANCEL
             </button>
             <button
@@ -87,7 +87,7 @@ export const AppCardAdd = ({ onAddCard, setCards, cards }) => {
               className={style.btnConfirm}
               onClick={() => {
                 setSecondPageVisable(true);
-                onAddCard();
+                onAddCardFalse();
                 addCard();
               }}
             >

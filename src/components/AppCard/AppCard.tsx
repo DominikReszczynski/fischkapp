@@ -14,8 +14,8 @@ export const AppCard = ({ front, back, index, cards, setCards }) => {
       <div>
         {!isEdit && (
           <NormalCard
-            front={front.firstWord}
-            back={back.secondWord}
+            front={front}
+            back={back}
             side={side}
             isEdit={isEdit}
             changeSide={() => setSide(!side)}
@@ -27,8 +27,8 @@ export const AppCard = ({ front, back, index, cards, setCards }) => {
         )}
         {isEdit && (
           <EditCard
-            front={front.firstWord}
-            back={back.secondWord}
+            front={front}
+            back={back}
             index={index}
             setCards={setCards}
             cards={cards}

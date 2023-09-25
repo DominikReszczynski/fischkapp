@@ -18,6 +18,7 @@ interface Flashcard {
 function App() {
   const [cards, setCards] = useState<Flashcard[]>([]);
   const [isAddingCard, setAdding] = useState(false);
+  const [post, setPost] = useState<boolean>(false)
   
 
 useEffect(() => {fetch(URL_FISCHKAPP)
@@ -29,13 +30,19 @@ useEffect(() => {fetch(URL_FISCHKAPP)
   })
   .then(data => {
     console.log('Odpowiedź serwera:', data);
-    const newCards = [...cards, ...data.map(item => ({ id:item._id ,front: item.front, back: item.back }))];
+    setCards([])
+    const newCards = data.map(item => ({
+      id: item._id,
+      front: item.front,
+      back: item.back
+    }));
     setCards(newCards);
   })
   .catch(error => {
     console.error('Błąd:', error);
   });
-}, [])
+}, [post])
+
 console.log('Odpowiedź serwera:', cards);
   return (
     <AppLayout>
@@ -43,7 +50,8 @@ console.log('Odpowiedź serwera:', cards);
       <div className="content">
         {isAddingCard && (
           <AppCardAdd
-            onAddCard={() => setAdding(false)}
+            onAddCardTrue={() => setAdding(true)}
+            onAddCardFalse={() => setAdding(false)}
             setCards={setCards}
             cards={cards}
           />
