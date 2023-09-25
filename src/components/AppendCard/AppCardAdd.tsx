@@ -11,8 +11,8 @@ export const AppCardAdd = ({ onAddCard, setCards, cards }) => {
     // setCards([...cards, { front: [firstWord], back: [secondWord] }]);
     // console.log(`dodaje, cards to: ${cards}, a dodałem ${firstWord} oraz ${secondWord}`)
     const data = {
-      front: {firstWord},
-      back: {secondWord}
+      front: firstWord,
+      back: secondWord
     };
     
     const requestOptions = {
