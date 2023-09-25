@@ -1,14 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import style from './AppCardAdd.module.css';
 import binIcon from '../../images/Kind=Delete.svg';
+import { URL_FISCHKAPP, URL_TOKEN } from '../../App';
 //card
 export const AppCardAdd = ({ onAddCard, setCards, cards }) => {
   const [secondPageVisable, setSecondPageVisable] = useState<boolean>(true);
   const [firstWord, setFirstWord] = useState<string>('');
   const [secondWord, setSecondWord] = useState<string>('');
   const addCard = () => {
-    setCards([...cards, { front: [firstWord], back: [secondWord] }]);
-    console.log(`dodaje, cards to: ${cards}, a dodałem ${firstWord} oraz ${secondWord}`)
+    // setCards([...cards, { front: [firstWord], back: [secondWord] }]);
+    // console.log(`dodaje, cards to: ${cards}, a dodałem ${firstWord} oraz ${secondWord}`)
+    const data = {
+      front: 'What is life?',
+      back: 'I have no idea.'
+    };
+    
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Authorization': "secret_token",
+        'Content-Type': "pplication/json"
+      },
+      body: JSON.stringify(data)
+    };
+    
+    fetch(URL_FISCHKAPP, requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          console.log(response)
+          throw new Error('Wystąpił błąd podczas wysyłania żądania.');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Odpowiedź serwera:', data);
+      })
+      .catch(error => {
+        console.error('Błąd:', error);
+      });
   };
   
   return (

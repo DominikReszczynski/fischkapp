@@ -7,9 +7,10 @@ import { AppCardAdd } from './components/AppendCard/AppCardAdd';
 import { AppCard } from './components/AppCard/AppCard';
 
 export const URL_FISCHKAPP = 'https://training.nerdbord.io/api/v1/fischkapp/flashcards'
-export const URL_TOKEN = 'Twój_tajny_token';
+export const URL_TOKEN = 'secret_token';
 
 interface Flashcard {
+  id: string,
   front: string;
   back: string;
 }
@@ -28,14 +29,14 @@ useEffect(() => {fetch(URL_FISCHKAPP)
   })
   .then(data => {
     console.log('Odpowiedź serwera:', data);
-    const newCards = [...cards, ...data.map(item => ({ front: item.front, back: item.back }))];
+    const newCards = [...cards, ...data.map(item => ({ id:item._id ,front: item.front, back: item.back }))];
     setCards(newCards);
   })
   .catch(error => {
     console.error('Błąd:', error);
   });
 }, [])
-
+console.log('Odpowiedź serwera:', cards);
   return (
     <AppLayout>
       <AppHeader cardsAmount={cards.length} onAddCard={() => setAdding(true)} />
