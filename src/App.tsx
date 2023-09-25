@@ -18,40 +18,39 @@ interface Flashcard {
 function App() {
   const [cards, setCards] = useState<Flashcard[]>([]);
   const [isAddingCard, setAdding] = useState(false);
-  const [post, setPost] = useState<boolean>(false)
-  
 
-useEffect(() => {fetch(URL_FISCHKAPP)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Wystąpił błąd podczas wysyłania żądania.');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log('Odpowiedź serwera:', data);
-    setCards([])
-    const newCards = data.map(item => ({
-      id: item._id,
-      front: item.front,
-      back: item.back
-    }));
-    setCards(newCards);
-  })
-  .catch(error => {
-    console.error('Błąd:', error);
-  });
-}, [post])
+  useEffect(() => {
+    fetch(URL_FISCHKAPP)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Wystąpił błąd podczas wysyłania żądania.');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Odpowiedź serwera:', data);
+        setCards([])
+        const newCards = data.map(item => ({
+          id: item._id,
+          front: item.front,
+          back: item.back
+        }));
+        setCards(newCards);
+      })
+      .catch(error => {
+        console.error('Błąd:', error);
+      });
+  }, [isAddingCard]); // Teraz useEffect zależy od isAddingCard
 
-console.log('Odpowiedź serwera:', cards);
+  console.log('Odpowiedź serwera:', cards);
+
   return (
     <AppLayout>
       <AppHeader cardsAmount={cards.length} onAddCard={() => setAdding(true)} />
       <div className="content">
         {isAddingCard && (
           <AppCardAdd
-            onAddCardTrue={() => setAdding(true)}
-            onAddCardFalse={() => setAdding(false)}
+            onAddCard={() => setAdding(false)}
             setCards={setCards}
             cards={cards}
           />
@@ -62,10 +61,10 @@ console.log('Odpowiedź serwera:', cards);
             {cards.map((item, index) => {
               return (
                 <AppCard
-                  key={index}
-                  front={cards[index].front}
+                  key={item.id} // Użyj unikalnego id, np. item.id
+                  front={item.front}
                   index={index}
-                  back={cards[index].back}
+                  back={item.back}
                   cards={cards}
                   setCards={setCards}
                 />

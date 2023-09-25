@@ -1,20 +1,20 @@
+
 import React, { useEffect, useState } from 'react';
 import style from './AppCardAdd.module.css';
 import binIcon from '../../images/Kind=Delete.svg';
 import { URL_FISCHKAPP, URL_TOKEN } from '../../App';
-//card
-export const AppCardAdd = ({ onAddCardTrue, onAddCardFalse, setCards, cards}) => {
-  const [secondPageVisable, setSecondPageVisable] = useState<boolean>(true);
+
+export const AppCardAdd = ({ onAddCard, setCards, cards }) => {
+  const [secondPageVisible, setSecondPageVisible] = useState<boolean>(true);
   const [firstWord, setFirstWord] = useState<string>('');
   const [secondWord, setSecondWord] = useState<string>('');
+
   const addCard = () => {
-    // setCards([...cards, { front: [firstWord], back: [secondWord] }]);
-    // console.log(`dodaje, cards to: ${cards}, a dodałem ${firstWord} oraz ${secondWord}`)
     const data = {
       front: firstWord,
       back: secondWord
     };
-    
+
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -23,26 +23,29 @@ export const AppCardAdd = ({ onAddCardTrue, onAddCardFalse, setCards, cards}) =>
       },
       body: JSON.stringify(data)
     };
-    
+
     fetch(URL_FISCHKAPP, requestOptions)
       .then(response => {
         if (!response.ok) {
-          console.log(response)
+          console.log(response);
           throw new Error('Wystąpił błąd podczas wysyłania żądania.');
         }
         return response.json();
       })
       .then(data => {
         console.log('Odpowiedź serwera:', data);
+        setFirstWord(''); // Czyścimy pola po dodaniu karty
+        setSecondWord('');
+        onAddCard(); // Wywołujemy onAddCard, aby zaktualizować stan isAddingCard
       })
       .catch(error => {
         console.error('Błąd:', error);
       });
   };
-  
+
   return (
     <>
-      {secondPageVisable && (
+      {secondPageVisible && (
         <div className={style.cardConteinerNext}>
           <textarea
             placeholder={firstWord}
@@ -50,13 +53,13 @@ export const AppCardAdd = ({ onAddCardTrue, onAddCardFalse, setCards, cards}) =>
             onChange={(e) => setFirstWord(e.target.value)}
           ></textarea>
           <div>
-            <button className={style.btnCancel} onClick={() => onAddCardFalse()}>
+            <button className={style.btnCancel} onClick={() => null}>
               CANCEL
             </button>
             <button
               className={style.btnConfirm}
               onClick={() => (
-                setSecondPageVisable(false)
+                setSecondPageVisible(false)
               )}
             >
               NEXT
@@ -64,7 +67,7 @@ export const AppCardAdd = ({ onAddCardTrue, onAddCardFalse, setCards, cards}) =>
           </div>
         </div>
       )}
-      {!secondPageVisable && (
+      {!secondPageVisible && (
         <div className={style.cardConteinerSave}>
           <div className={style.saveHeader}>
             <button className={style.binBtn}>
@@ -79,15 +82,14 @@ export const AppCardAdd = ({ onAddCardTrue, onAddCardFalse, setCards, cards}) =>
           <div>
             <button
               className={style.btnCancel}
-              onClick={() => setSecondPageVisable(true)}
+              onClick={() => setSecondPageVisible(true)}
             >
               BACK
             </button>
             <button
               className={style.btnConfirm}
               onClick={() => {
-                setSecondPageVisable(true);
-                onAddCardFalse();
+                setSecondPageVisible(true);
                 addCard();
               }}
             >
