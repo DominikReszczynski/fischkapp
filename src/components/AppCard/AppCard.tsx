@@ -23,6 +23,8 @@ export const AppCard = ({ front, back, index, id, cards, setCards,  onAddCard })
             cards={cards}
             setCards={setCards}
             index={index}
+            id={id}
+            onAddCard={ onAddCard}
           />
         )}
         {isEdit && (
