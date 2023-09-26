@@ -35,7 +35,9 @@ export const NormalCard = ({
       })
       .then((data) => {
         console.log('Odpowiedź serwera na usunięcie:', data);
-        onAddCard();
+        let updatedCards = [...cards];
+        updatedCards.splice(index, 1);
+        setCards(updatedCards);
       })
       .catch((error) => {
         console.error('Błąd:', error);
@@ -51,7 +53,6 @@ export const NormalCard = ({
         <button
           onClick={() => {
             deleteCard();
-            window.location.reload();
           }}
         >
           <img src={binIcon} alt="bin" />
