@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { EditCard } from './edit/editCard';
 import { NormalCard } from './normal/normalCard';
 
-export const AppCard = ({ front, back, index, cards, setCards }) => {
+export const AppCard = ({ front, back, index, id, cards, setCards,  onAddCard }) => {
   const [side, setSide] = useState(true);
   const [isEdit, setEdit] = useState(false);
   
@@ -30,9 +30,11 @@ export const AppCard = ({ front, back, index, cards, setCards }) => {
             front={front}
             back={back}
             index={index}
+            id={id}
             setCards={setCards}
             cards={cards}
             closeEdit={() => setEdit(false)}
+            onAddCard={ onAddCard}
           />
         )}
       </div>

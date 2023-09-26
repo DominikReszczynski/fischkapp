@@ -70,9 +70,6 @@ export const AppCardAdd = ({ onAddCard, setCards, cards }) => {
       {!secondPageVisible && (
         <div className={style.cardConteinerSave}>
           <div className={style.saveHeader}>
-            <button className={style.binBtn}>
-              <img src={binIcon} alt="binIcon" />
-            </button>
           </div>
           <textarea
             placeholder={secondWord}

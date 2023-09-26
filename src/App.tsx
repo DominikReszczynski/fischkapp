@@ -40,7 +40,7 @@ function App() {
       .catch(error => {
         console.error('Błąd:', error);
       });
-  }, [isAddingCard]); // Teraz useEffect zależy od isAddingCard
+  }, [isAddingCard]); 
 
   console.log('Odpowiedź serwera:', cards);
 
@@ -58,15 +58,17 @@ function App() {
         {!isAddingCard && (
           <>
             {cards.length === 0 && <p>Brak fiszek, dodaj nowe</p>}
-            {cards.map((item, index) => {
+            {cards.map((item,index) => {
               return (
                 <AppCard
-                  key={item.id} // Użyj unikalnego id, np. item.id
+                  key={index}
                   front={item.front}
                   index={index}
+                  id={item.id}
                   back={item.back}
                   cards={cards}
                   setCards={setCards}
+                  onAddCard={() => setAdding(false)}
                 />
               );
             })}
