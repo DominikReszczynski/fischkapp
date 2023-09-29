@@ -1,13 +1,14 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect.js';
+import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
-import { EditCard } from './EditCard';
+import { EditCard } from './editCard';
 
 // Tworzymy serwer HTTP Mock, aby obsłużyć żądanie PATCH do naszej usługi API (mockowanej)
 const server = setupServer(
   rest.patch('http://example.com/api/fischkapp/:id', (req, res, ctx) => {
-    const { id, front, back } = req.body;
+    const { id, front, back } = req.body as { id: string, front: string, back: string };
     if (front === '' || back === '') {
       return res(ctx.status(400), ctx.json({ error: 'Invalid input' }));
     }
@@ -21,7 +22,7 @@ afterAll(() => server.close());
 
 describe('EditCard', () => {
   it('should not edit a flashcard when edited value is empty', async () => {
-    render(<EditCard front="Front Value" back="Back Value" />);
+    render(<EditCard front="Front Value" back="Back Value" index={undefined} id={undefined} cards={undefined} setCards={undefined} closeEdit={undefined} onAddCard={undefined} />);
 
     const nextButton = screen.getByText('NEXT');
     fireEvent.click(nextButton);
@@ -37,7 +38,7 @@ describe('EditCard', () => {
   });
 
   it('should edit a flashcard when edited value is not empty', async () => {
-    render(<EditCard front="Front Value" back="Back Value" />);
+    render(<EditCard front="Front Value" back="Back Value" index={undefined} id={undefined} cards={undefined} setCards={undefined} closeEdit={undefined} onAddCard={undefined} />);
 
     const nextButton = screen.getByText('NEXT');
     fireEvent.click(nextButton);
@@ -59,7 +60,7 @@ describe('EditCard', () => {
 
   it('should exit editing mode by clicking cancel button', () => {
     const closeEditMock = jest.fn();
-    render(<EditCard front="Front Value" back="Back Value" closeEdit={closeEditMock} />);
+    render(<EditCard front="Front Value" back="Back Value" closeEdit={closeEditMock} index={undefined} id={undefined} cards={undefined} setCards={undefined} onAddCard={undefined} />);
 
     const cancelButton = screen.getByText('CANCEL');
     fireEvent.click(cancelButton);
