@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./AppLayout.module.css";
-
-export const AppLayout = (props) => (
+interface AppLayoutProps {
+  children: any;
+}
+export const AppLayout: React.FC<AppLayoutProps> = (props) => (
   <div className={styles.layout}>{props.children}</div>
 );

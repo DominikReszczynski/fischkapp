@@ -1,9 +1,20 @@
 import React, { useState } from 'react';
 import binIcon from '../../../images/Kind=Delete.svg';
 import styles from './editCard.module.css';
-import { URL_FISCHKAPP, URL_TOKEN } from '../../../App';
+import { Card, URL_FISCHKAPP, URL_TOKEN } from '../../../App';
 
-export const EditCard = ({
+interface EditCardProps {
+  front: string;
+  back: string;
+  index: number;
+  id: string;
+  cards: Card[];
+  setCards: (cards: Card[]) => void;
+  closeEdit: () => void;
+  onAddCard: () => void;
+}
+
+export const EditCard: React.FC<EditCardProps> = ({
   front,
   back,
   index,
@@ -18,9 +29,13 @@ export const EditCard = ({
   const [secondWord, setSecondWord] = useState<string>('');
 
   const changeWordsOnCard = () => {
-    const updatedCards = [...cards];
+    const updatedCards: Card[] = [...cards];
     const updatedWords = { front: firstWord , back: secondWord };
-    updatedCards[index] = updatedWords;
+    if (updatedCards[index]) {
+      updatedCards[index].front = updatedWords.front;
+      updatedCards[index].back = updatedWords.back;
+      setCards(updatedCards);
+    }
     setCards(updatedCards);
   };
   const editCard = () => {

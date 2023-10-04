@@ -3,9 +3,20 @@ import styles from './normalCard.module.css';
 import editIcon from '../../../images/Kind=Edit.svg';
 import binIcon from '../../../images/Kind=Delete.svg';
 import { URL_FISCHKAPP, URL_TOKEN } from '../../../App';
-export const NormalCard = ({
-  front,
-  back,
+import { Card } from '../../../App';
+
+interface NormalCardProps {
+  side: boolean;
+  isEdit: boolean;
+  changeSide: () => void;
+  openEdit: () => void;
+  cards: Card[];
+  setCards: (cards: Card[]) => void;
+  index: number;
+  id: string;
+}
+
+export const NormalCard: React.FC<NormalCardProps> = ({
   side,
   isEdit,
   changeSide,
@@ -14,7 +25,6 @@ export const NormalCard = ({
   setCards,
   index,
   id,
-  onAddCard,
 }) => {
   const [flip, setFlip] = useState(false);
   const deleteCard = () => {
@@ -24,13 +34,14 @@ export const NormalCard = ({
         Authorization: URL_TOKEN,
       },
     };
-  
+
     fetch(`${URL_FISCHKAPP}/${id}`, requestOptions)
       .then((response) => {
         if (!response.ok) {
           console.log(response);
           throw new Error('Wystąpił błąd podczas usuwania');
         }
+        console.log(response.json())
         return response.json();
       })
       .then((data) => {
@@ -42,11 +53,12 @@ export const NormalCard = ({
       .catch((error) => {
         console.error('Błąd:', error);
       });
-      
   };
+
   useEffect(() => {
     setTimeout(() => setFlip(false), 400);
   }, [flip]);
+
   return (
     <div className={`${styles.card} ${flip ? styles.flip : ''}`}>
       <div className={styles.editConteiner}>
@@ -55,14 +67,14 @@ export const NormalCard = ({
             deleteCard();
           }}
         >
-          <img src={binIcon} alt="bin" />
+          <img src='../../../images/Kind=Delete.svg' alt="bin" />
         </button>
         <button
           onClick={() => {
             openEdit();
           }}
         >
-          <img src={editIcon} alt="edit" />
+          <img src='../../../images/Kind=Edit.svg' alt="edit" />
         </button>
       </div>
       <button

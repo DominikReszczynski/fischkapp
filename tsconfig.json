@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES6", // lub inny docelowy poziom ECMAScript
+    "module": "CommonJS", // lub inny format modułu
+    "jsx": "react", // lub "preserve" jeśli nie używasz Reacta
+    "strict": true, // lub inne opcje zgodnie z Twoimi preferencjami
+    "esModuleInterop": true, // jeśli używasz importu/exportu z CommonJS
+    // inne opcje kompilatora TypeScript
+  },
+  "include": ["src/**/*"], // lub inne ścieżki do plików źródłowych
+  "exclude": ["node_modules"] // lub inne wykluczenia
+}

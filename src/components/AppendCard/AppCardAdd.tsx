@@ -3,8 +3,15 @@ import React, { useEffect, useState } from 'react';
 import style from './AppCardAdd.module.css';
 import binIcon from '../../images/Kind=Delete.svg';
 import { URL_FISCHKAPP, URL_TOKEN } from '../../App';
+import { Card } from '../../App';
 
-export const AppCardAdd = ({ onAddCard, setCards, cards }) => {
+interface AppCardAddProps {
+  onAddCard: () => void;
+  setCards: (cards: Card[]) => void;
+  cards: Card[];
+}
+
+export const AppCardAdd: React.FC<AppCardAddProps> = ({ onAddCard, setCards, cards }) => {
   const [secondPageVisible, setSecondPageVisible] = useState<boolean>(true);
   const [firstWord, setFirstWord] = useState<string>('');
   const [secondWord, setSecondWord] = useState<string>('');

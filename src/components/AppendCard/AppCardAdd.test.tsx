@@ -1,8 +1,9 @@
 import React from 'react';
+import fetch from 'node-fetch';
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
-import { AppCardAdd } from './AppCardAdd.tsx';
+import { AppCardAdd } from './AppCardAdd';
 
 // Tworzymy serwer HTTP Mock, aby obsłużyć żądanie POST do naszej usługi API (mockowanej)
 const server = setupServer(

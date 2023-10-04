@@ -4,8 +4,19 @@ import React, { useEffect, useState } from 'react';
 
 import { EditCard } from './edit/editCard';
 import { NormalCard } from './normal/normalCard';
+import { Card } from '../../App'
 
-export const AppCard = ({ front, back, index, id, cards, setCards,  onAddCard }) => {
+interface AppCardProps {
+  front: string;
+  back: string;
+  index: number;
+  id: string;
+  cards: Card[];
+  setCards: (cards: Card[]) => void;
+  onAddCard: () => void;
+}
+
+export const AppCard: React.FC<AppCardProps> = ({ front, back, index, id, cards, setCards,  onAddCard }) => {
   const [side, setSide] = useState(true);
   const [isEdit, setEdit] = useState(false);
   
@@ -14,8 +25,6 @@ export const AppCard = ({ front, back, index, id, cards, setCards,  onAddCard })
       <div>
         {!isEdit && (
           <NormalCard
-            front={front}
-            back={back}
             side={side}
             isEdit={isEdit}
             changeSide={() => setSide(!side)}
@@ -24,7 +33,6 @@ export const AppCard = ({ front, back, index, id, cards, setCards,  onAddCard })
             setCards={setCards}
             index={index}
             id={id}
-            onAddCard={ onAddCard}
           />
         )}
         {isEdit && (

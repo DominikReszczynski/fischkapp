@@ -9,14 +9,15 @@ import { AppCard } from './components/AppCard/AppCard';
 export const URL_FISCHKAPP = 'https://training.nerdbord.io/api/v1/fischkapp/flashcards'
 export const URL_TOKEN = 'secret_token';
 
-interface Flashcard {
+export interface Card {
+  _id?:string,
   id: string,
   front: string;
   back: string;
 }
 
 function App() {
-  const [cards, setCards] = useState<Flashcard[]>([]);
+  const [cards, setCards] = useState<Card[]>([]);
   const [isAddingCard, setAdding] = useState(false);
 
   useEffect(() => {
@@ -30,8 +31,8 @@ function App() {
       .then(data => {
         console.log('Odpowiedź serwera:', data);
         setCards([])
-        const newCards = data.map(item => ({
-          id: item._id,
+        const newCards = data.map((item: Card) => ({
+          id: item._id || "",
           front: item.front,
           back: item.back
         }));

@@ -1,8 +1,10 @@
+//@ts-nocheck
 import React from 'react';
+import fetch from 'jest-fetch-mock';
 import { render, fireEvent, screen } from '@testing-library/react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
-import { EditCard } from './EditCard';
+import { EditCard } from './editCard';
 
 // Tworzymy serwer HTTP Mock, aby obsłużyć żądanie PATCH do naszej usługi API (mockowanej)
 const server = setupServer(
