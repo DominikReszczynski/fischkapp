@@ -38,10 +38,10 @@ export const NormalCard: React.FC<NormalCardProps> = ({
     fetch(`${URL_FISCHKAPP}/${id}`, requestOptions)
       .then((response) => {
         if (!response.ok) {
-          console.log(response);
+          //console.log(response);
           throw new Error('Wystąpił błąd podczas usuwania');
         }
-        console.log(response.json())
+        //console.log(response.json())
         return response.json();
       })
       .then((data) => {
@@ -51,7 +51,7 @@ export const NormalCard: React.FC<NormalCardProps> = ({
         setCards(updatedCards);
       })
       .catch((error) => {
-        console.error('Błąd:', error);
+        //console.error('Błąd:', error);
       });
   };
 

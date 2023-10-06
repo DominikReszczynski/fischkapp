@@ -1,4 +1,3 @@
-
 //@ts-nocheck
 import React from 'react';
 import fetchMock from 'jest-fetch-mock';
@@ -16,6 +15,7 @@ const server = setupServer(
     return res(ctx.status(404), ctx.json({ error: 'Card not found' }));
   })
 );
+
 beforeAll(() => {
   server.listen();
   fetchMock.enableMocks(); // Enable fetch mocks using fetchMock
@@ -25,10 +25,20 @@ beforeEach(() => {
   fetchMock.resetMocks(); // Reset fetch mocks before each test
   server.resetHandlers();
 });
-beforeAll(() => server.listen());
-// beforeEach(() => fetchMock.reset());
-afterEach(() => server.resetHandlers());
+
+afterEach(() => {
+  jest.resetAllMocks(); // Reset all mocks after each test
+  server.resetHandlers();
+});
+
 afterAll(() => server.close());
+
+// Mock fetch response
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve({ success: true }),
+  })
+);
 
 describe('NormalCard', () => {
   it('should delete flashcard from the list when clicking on Trash icon', async () => {
