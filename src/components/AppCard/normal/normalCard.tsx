@@ -67,14 +67,14 @@ export const NormalCard: React.FC<NormalCardProps> = ({
             deleteCard();
           }}
         >
-          <img src='../../../images/Kind=Delete.svg' alt="bin" />
+          <img src={binIcon} alt="bin" />
         </button>
         <button
           onClick={() => {
             openEdit();
           }}
         >
-          <img src='../../../images/Kind=Edit.svg' alt="edit" />
+          <img src={editIcon} alt="edit" />
         </button>
       </div>
       <button
