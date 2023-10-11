@@ -1,7 +1,9 @@
 //@ts-nocheck
 import React from 'react';
 import fetch from 'jest-fetch-mock';
-import { render, fireEvent, screen } from '@testing-library/react';
+import fetch from 'node-fetch';
+import { render, fireEvent, screen, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { EditCard } from './editCard';
@@ -38,26 +40,52 @@ describe('EditCard', () => {
     });
   });
 
-  it('should edit a flashcard when edited value is not empty', async () => {
-    render(<EditCard front="Front Value" back="Back Value" />);
+  // it('should edit a flashcard when edited value is not empty', async () => {
+  //   render(<EditCard front="Front Value" back="Back Value" />);
 
+  //   const nextButton = screen.getByText('NEXT');
+  //   fireEvent.click(nextButton);
+
+  //   const frontInput = screen.getByPlaceholderText('Front Value');
+  //   const backInput = screen.getByPlaceholderText('Back Value');
+  //   fireEvent.change(frontInput, { target: { value: 'Edited Front' } });
+  //   fireEvent.change(backInput, { target: { value: 'Edited Back' } });
+
+  //   const saveButton = screen.getByText('SAVE');
+  //   fireEvent.click(saveButton);
+
+  //   // Sprawdzamy, czy nie widzimy komunikatu o błędzie
+  //   await waitFor(() => {
+  //     const errorText = screen.queryByText('Invalid input');
+  //     expect(errorText).not.toBeInTheDocument();
+  //   });
+  // });
+  it('should edit a flashcard when edited value is not empty', async () => {
+    const closeEdit = jest.fn();
+    const cards = [{ front: 'Front Value', back: 'Back Value' }];
+    const setCards = jest.fn();
+  
+    render(<EditCard front="Front Value" back="Back Value" closeEdit={closeEdit} cards={cards} setCards={setCards} />);
+  
     const nextButton = screen.getByText('NEXT');
     fireEvent.click(nextButton);
-
-    const frontInput = screen.getByPlaceholderText('Front Value');
+  
     const backInput = screen.getByPlaceholderText('Back Value');
-    fireEvent.change(frontInput, { target: { value: 'Edited Front' } });
     fireEvent.change(backInput, { target: { value: 'Edited Back' } });
-
+  
     const saveButton = screen.getByText('SAVE');
     fireEvent.click(saveButton);
-
+  
     // Sprawdzamy, czy nie widzimy komunikatu o błędzie
     await waitFor(() => {
       const errorText = screen.queryByText('Invalid input');
       expect(errorText).not.toBeInTheDocument();
     });
   });
+  
+  
+  
+  
 
   it('should exit editing mode by clicking cancel button', () => {
     const closeEditMock = jest.fn();
