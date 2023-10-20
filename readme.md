@@ -4,6 +4,8 @@
 
 This project is for faster learning and quick memorization by using your own fiches.
 
+URL: https://fischkapp-alpha.vercel.app/
+
 ---
 
 ## Run Locally
