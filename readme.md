@@ -1,19 +1,35 @@
 <h1 align="center">
-  Fischkapp 📄
+  Fischkapp <img src='./src/images/fischkappLogo.svg'>
 </h1>
 
-This project aims to create a simple app that supports learning.
+This project is for faster learning and quick memorization by using your own fiches.
 
 ---
 
-### 📝 Project requirements
+## Run Locally
 
-- should be possible to add new flashcard
-- should be possible to edit existing flashcard
-- should be able to delete flashcard
-- should be able to toggle flashcard between front, and back
-- should be able to display many flashcards
+Clone the project
+
+```bash
+  git clone https://github.com/DominikReszczynski/fischkapp.git
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run dev
+```
 
 ### 🔧 Technical requirements
 
-React.js, CSS Modules
+TypeScript, React.js, CSS Modules, Api
+
+## Authors
+
+- [@DominikReszczynski](https://github.com/DominikReszczynski)
